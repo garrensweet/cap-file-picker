@@ -1,12 +1,23 @@
 import './ExploreContainer.css';
+import { FilePicker } from '@capawesome/capacitor-file-picker';
 
 interface ContainerProps { }
 
 const ExploreContainer: React.FC<ContainerProps> = () => {
+  const openFilePicker = async () => {
+
+    const result = await FilePicker.pickFiles({
+      types: ['application/pdf', 'image/png', 'image/jpeg', 'image/gif', 'image/tiff'],
+      multiple: true,
+    })
+
+    console.log(result.files);
+  }
+
   return (
     <div className="container">
-      <strong>Ready to create an app?</strong>
-      <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      
+      <p>Start By  <a target="_blank" rel="noopener noreferrer"  onClick={openFilePicker}>Selecting an Image</a></p>
     </div>
   );
 };
